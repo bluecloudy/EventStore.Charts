@@ -69,9 +69,19 @@ podDisruptionBudget:
   ##
   ## Number of pods that can be unavailable after eviction.
   # maxUnavailable: 1
-
+##
+## External IP Address. Remove or set to `null` to disable connections from outside the cluster.
+extIp: 0.0.0.0
+##
+## Internal HTTP port.
+intHttpPort: 2112
+##
 ## External HTTP port.
 extHttpPort: 2113
+##
+## Internal TCP port.
+intTcpPort: 1112
+##
 ## External TCP port.
 extTcpPort: 1113
 # Insecure mode
@@ -117,7 +127,8 @@ persistence:
   mountPath: /var/lib/eventstore
   annotations: {}
 
-resources: {}
+resources:
+  {}
   ## If you want to specify resources, uncomment the following
   ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   ##
@@ -135,7 +146,6 @@ podAnnotations: {}
 tolerations: []
 
 affinity: {}
-
 
 securityContext:
   runAsUser: 0
