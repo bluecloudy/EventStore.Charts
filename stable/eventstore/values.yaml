@@ -6,7 +6,7 @@
 image: eventstore/eventstore
 ##
 ## Event Store image tag
-imageTag: release-4.1.1-hotfix1
+imageTag: 21.10.9-bionic
 ##
 ## Specify a imagePullPolicy
 ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -69,21 +69,12 @@ podDisruptionBudget:
   ##
   ## Number of pods that can be unavailable after eviction.
   # maxUnavailable: 1
-##
-## External IP Address. Remove or set to `null` to disable connections from outside the cluster.
-extIp: 0.0.0.0
-##
-## Internal HTTP port.
-intHttpPort: 2112
-##
+
 ## External HTTP port.
 extHttpPort: 2113
-##
-## Internal TCP port.
-intTcpPort: 1112
-##
-## External TCP port.
-extTcpPort: 1113
+# Insecure mode
+insecure: true
+
 ##
 ## The amount of drift, in ms, between clocks on nodes allowed before gossip is rejected.
 gossipAllowedDiffMs: 600000

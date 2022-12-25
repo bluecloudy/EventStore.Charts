@@ -30,7 +30,7 @@ spec:
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}
       {{- end }}
-    spec:      
+    spec:
       {{- if .Values.securityContext }}
       securityContext:
 {{ toYaml .Values.securityContext | indent 8 }}
@@ -54,7 +54,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "eventstore.fullname" . }}-env
-          env: 
+          env:
             - name: EVENTSTORE_INT_IP
               valueFrom:
                 fieldRef:
@@ -80,18 +80,22 @@ spec:
             - containerPort: {{ .Values.extHttpPort }}
           livenessProbe:
             httpGet:
-              path: /stats
-              port: {{ .Values.extHttpPort }}
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 15
+              path: health/live
+              port: 2113
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /stats
-              port: {{ .Values.extHttpPort }}
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 15
+              path: health/live
+              port: 2113
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
