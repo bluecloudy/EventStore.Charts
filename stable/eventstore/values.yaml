@@ -72,6 +72,8 @@ podDisruptionBudget:
 
 ## External HTTP port.
 extHttpPort: 2113
+## External TCP port.
+extTcpPort: 1113
 # Insecure mode
 insecure: true
 
